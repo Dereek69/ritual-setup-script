@@ -71,9 +71,20 @@ do
     read done
 done
 
+# Install foundry
+cd
+mkdir foundry
+cd foundry
+curl -L https://foundry.paradigm.xyz | bash
+source ~/.bashrc
+foundryup
+cd ~/infernet-container-starter/projects/hello-world/contracts
+forge install --no-commit foundry-rs/forge-std
+forge install --no-commit ritual-net/infernet-sdk
+cd ../../../
 
+echo "Please wait a few seconds for the node to be activated"
 docker restart deploy-node-1
-
 make deploy-contracts project=hello-world
 
 # Ask the user the contract called SaysHello from the output of the previous command
@@ -83,7 +94,7 @@ read contract
 # Edit the file projects/hello-world/contracts/script/CallContract.s.sol and replace:
 # 0x663F3ad617193148711d28f5334eE4Ed07016602 with the user's contract address
 
-sed -i "s/0x663F3ad617193148711d28f5334eE4Ed07016602/$contract/g" ./infernet-container-starter/projects/hello-world/contracts/script/CallContract.s.sol
+sed -i "s/0x663F3ad617193148711d28f5334eE4Ed07016602/$contract/g" ./projects/hello-world/contracts/script/CallContract.s.sol
 
 screen -S ritual-call-contract -d -m bash -c "make call-contract project=hello-world"
 
