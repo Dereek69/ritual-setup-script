@@ -24,15 +24,15 @@ correct="No"
 # Loop until the user wrote "Yes"
 while [ "$correct" != "Yes" ]
 do
-    echo "Please enter your private key"
+    echo -e "\e[32mPlease enter your private key:\e[0m"
     read private_key
-    echo "Please enter your rpc url"
+    echo -e "\e[32mPlease enter your rpc url:\e[0m"
     read rpc_url
 
-    echo "Your private key is: $private_key"
-    echo "Your rpc url is: $rpc_url"
+    echo -e "\e[34mYour private key is: $private_key\e[0m"
+    echo -e "\e[34mYour rpc url is: $rpc_url\e[0m"
 
-    echo "Is this correct? (Yes/No)"
+    echo -e "\e[33mIs this correct? (Yes/No)\e[0m"
     read correct
 done
 
@@ -59,15 +59,15 @@ sed -i "s|http://localhost:8545|$rpc_url|g" ./projects/hello-world/contracts/Mak
 sed -i "s/0x5FbDB2315678afecb367f032d93F642f64180aa3/0x8D871Ef2826ac9001fB2e33fDD6379b6aaBF449c/g" ./projects/hello-world/contracts/script/Deploy.s.sol
 
 #Have the user fund the address with some ETH on base
-echo "Please fund your address with some ETH on base chain"
-echo "Then go here https://basescan.org/address/0x8D871Ef2826ac9001fB2e33fDD6379b6aaBF449c#writeContract and click "Write" on the registerNode function"
-echo "Then wait 1 hour and click "Write" on the activateNode function"
-echo "Write Yes when you are done"
+echo -e "\e[32mPlease fund your address with some ETH on base chain\e[0m"
+echo -e "\e[32mThen go here https://basescan.org/address/0x8D871Ef2826ac9001fB2e33fDD6379b6aaBF449c#writeContract and click \"Write\" on the registerNode function\e[0m"
+echo -e "\e[32mThen wait 1 hour and click \"Write\" on the activateNode function\e[0m"
+echo -e "\e[33mWrite Yes when you are done\e[0m"
 read done
 # Loop until the user wrote "done"
 while [ "$done" != "Yes" ]
 do
-    echo "Write Yes when you are done"
+    echo -e "\e[33mWrite Yes when you are done\e[0m"
     read done
 done
 
@@ -87,8 +87,8 @@ echo "Please wait a few seconds for the node to be activated"
 docker restart deploy-node-1
 make deploy-contracts project=hello-world
 
-# Ask the user the contract called SaysHello from the output of the previous command
-echo "Please enter the contract called SaysHello from the output of the previous command"
+#Ask the user to enter the contract address of the SaysHello contract
+echo -e "\e[34mPlease enter the contract called SaysHello from the output of the previous command:\e[0m"
 read contract
 
 # Edit the file projects/hello-world/contracts/script/CallContract.s.sol and replace:
