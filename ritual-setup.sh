@@ -74,7 +74,7 @@ done
 
 docker restart deploy-node-1
 
-screen -S ritual-deploy-contracts -d -m bash -c "make deploy-contracts project=hello-world"
+make deploy-contracts project=hello-world
 
 # Ask the user the contract called SaysHello from the output of the previous command
 echo "Please enter the contract called SaysHello from the output of the previous command"
