@@ -54,7 +54,7 @@ do
 done
 
 cd ~/inferent-container-starter
-screen -S ritual-deploy-container -d -m bash -c "project=hello-world make deploy-container"
+screen -S ritual-deploy-container -d -m bash -c "make deploy-container project=hello-world"
 
 screen -S ritual-deploy-contracts -d -m bash -c "make deploy-contracts project=hello-world"
 
@@ -68,3 +68,5 @@ read contract
 sed -i "s/0x663F3ad617193148711d28f5334eE4Ed07016602/$contract/g" projects/hello-world/contracts/script/CallContract.s.sol
 
 screen -S ritual-call-contract -d -m bash -c "make call-contract project=hello-world"
+
+screen -r ritual-deploy-container
