@@ -1,7 +1,7 @@
 #This is a script meant to be run to install and setup the ritual node
 
 # Update the system and install the necessary packages
-sudo apt update && sudo apt upgrade -y
+sudo apt update
 sudo apt -qy install curl git jq lz4 build-essential screen -y
 sudo apt install docker.io -y
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -76,7 +76,7 @@ cd
 mkdir foundry
 cd foundry
 curl -L https://foundry.paradigm.xyz | bash
-source ~/.bashrc
+. ~/.bashrc
 foundryup
 cd ~/infernet-container-starter/projects/hello-world/contracts
 forge install --no-commit foundry-rs/forge-std
