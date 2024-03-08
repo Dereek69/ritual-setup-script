@@ -10,6 +10,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 # Clone the repository and launch the container
 git clone https://github.com/Dereek69/infernet-container-starter
 cd infernet-container-starter
+screen -S ritual-deploy-container -d -m bash -c "make deploy-container project=hello-world"
 
 # Ask the user for their private key
 echo "Please enter your private key"
@@ -54,7 +55,7 @@ do
 done
 
 
-screen -S ritual-deploy-container -d -m bash -c "make deploy-container project=hello-world"
+docker restart deploy-node-1
 
 screen -S ritual-deploy-contracts -d -m bash -c "make deploy-contracts project=hello-world"
 
