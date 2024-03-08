@@ -43,7 +43,7 @@ done
 # 0x5FbDB2315678afecb367f032d93F642f64180aa3 with 0x8D871Ef2826ac9001fB2e33fDD6379b6aaBF449c
 
 sed -i "s/0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d/$private_key/g" ./deploy/config.json
-sed -i "s/http:\/\/host.docker.internal:8545/$rpc_url/g" ./deploy/config.json
+sed -i "s|http://host.docker.internal:8545|$rpc_url|g" ./deploy/config.json
 sed -i "s/0x5FbDB2315678afecb367f032d93F642f64180aa3/0x8D871Ef2826ac9001fB2e33fDD6379b6aaBF449c/g" ./deploy/config.json
 
 # Edit the file projects/hello-world/contracts/Makefile and replace:
@@ -51,7 +51,7 @@ sed -i "s/0x5FbDB2315678afecb367f032d93F642f64180aa3/0x8D871Ef2826ac9001fB2e33fD
 # http://localhost:8545 with the user's rpc url
 
 sed -i "s/0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a/$private_key/g" ./projects/hello-world/contracts/Makefile
-sed -i "s/http:\/\/localhost:8545/$rpc_url/g" ./projects/hello-world/contracts/Makefile
+sed -i "s|http://localhost:8545|$rpc_url|g" ./projects/hello-world/contracts/Makefile
 
 # Edit the file projects/hello-world/contracts/script/Deploy.s.sol and replace:
 # 0x5FbDB2315678afecb367f032d93F642f64180aa3 with 0x8D871Ef2826ac9001fB2e33fDD6379b6aaBF449c
