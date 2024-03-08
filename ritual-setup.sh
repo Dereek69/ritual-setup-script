@@ -18,13 +18,24 @@ screen -S ritual-deploy-container -d -m bash -c "make deploy-container project=h
 #Wait 5 seconds for the container to start
 sleep 5
 
-# Ask the user for their private key
-echo "Please enter your private key"
-read private_key
+# Set correct variable to "No"
+correct="No"
 
-# Ask the user for their rpc url
-echo "Please enter your rpc url"
-read rpc_url
+# Loop until the user wrote "Yes"
+while [ "$correct" != "Yes" ]
+do
+    echo "Please enter your private key"
+    read private_key
+    echo "Please enter your rpc url"
+    read rpc_url
+
+    echo "Your private key is: $private_key"
+    echo "Your rpc url is: $rpc_url"
+
+    echo "Is this correct? (Yes/No)"
+    read correct
+done
+
 
 #Edit the file ~/infernet-container-starter/deploy/config.json and replace:
 # 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d with the user's private key
