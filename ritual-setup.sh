@@ -129,8 +129,11 @@ keep_alive(){
     do
         if [ "$(docker inspect -f '{{.State.Running}}' deploy-node-1)" = "false" ]; then
             printf "\e[34mThe docker deploy-node-1 is not running, restarting it\e[0m\n"
-            docker restart deploy-node-1
+            docker restart anvil-node
             docker restart hello-world
+            docker restart deploy-node-1
+            docker restart deploy-fluentbit-1
+            docker restart deploy-redis-1
             printf "\e[34mChecking again in 5 minutes\e[0m\n"
         # If the docker is still running, print the logs from the last 5 minutes
         else
